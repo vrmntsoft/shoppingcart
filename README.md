@@ -13,7 +13,7 @@ API Calls
 
 1. Create Basket
 
-call (POST): http://<server>/basket
+call (POST): http://[server]/basket
 
 CreateBasket Response
 
@@ -23,7 +23,7 @@ CreateBasket Response
 
 2. Add Item
 
-call (POST) : http://<server>/basket/<basket id>/add
+call (POST) : http://[server]/basket/[basket id]/add
 
 AddItem Request
 {
@@ -48,7 +48,7 @@ AddItem Response
 
 3. Checkout
 
-call (GET) : http://<server>/basket/<basket id>/checkout
+call (GET) : http://[server]/basket/[basket id]/checkout
 
 Checkout Response
 {
