@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2021_06_03_004031) do
     t.string "item_name"
     t.float "item_price"
     t.integer "item_quantity"
-    t.float "tax_amount"
-    t.float "item_calculated_amount"
-    t.string "item_calculated_tax_amount"
+#    t.float "tax_amount"
+#    t.float "item_calculated_amount"
+#    t.string "item_calculated_tax_amount"
     t.boolean "food_or_medical"
     t.boolean "imported"
     t.datetime "created_at", precision: 6, null: false

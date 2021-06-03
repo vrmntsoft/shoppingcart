@@ -17,15 +17,11 @@ class Receipt
     purchase_items.each do |purchase_item|
       receipt_line = ReceiptLine.new(purchase_item)
       self.lines << receipt_line
-      puts "adding to totals: " + purchase_item.inspect
-
 
       current_item_total = purchase_item.item_price * purchase_item.item_quantity
       item_total += receipt_line.item_cost 
       item_tax_rate = purchase_item.tax_rate
-      puts "its the tax rate: " + item_tax_rate.inspect
       tax_total += current_item_total * item_tax_rate
-puts "past totals"
     end
     
     self.header.receipt_dttm = DateTime.current.strftime("%d/%m/%y %H:%M:%S")
