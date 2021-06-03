@@ -1,3 +1,5 @@
+
+
 class Receipt
 
  attr_accessor :header
@@ -19,17 +21,18 @@ class Receipt
 
 
       current_item_total = purchase_item.item_price * purchase_item.item_quantity
-      item_total += current_item_total
+      item_total += receipt_line.item_cost 
       item_tax_rate = purchase_item.tax_rate
       puts "its the tax rate: " + item_tax_rate.inspect
       tax_total += current_item_total * item_tax_rate
 puts "past totals"
     end
     
-    self.header.receipt_dttm = Date.current
-    self.header.item_totals = item_total
-    self.header.tax_total = tax_total
-    self.header.purchase_total = item_total + tax_total
+    self.header.receipt_dttm = DateTime.current.strftime("%d/%m/%y %H:%M:%S")
+    self.header.item_totals = item_total.to_d
+    self.header.tax_total = tax_total.to_d
+    self.header.purchase_total = (item_total + tax_total).to_d
+
 
   end
 
@@ -52,9 +55,28 @@ class ReceiptLine
     self.item_name = line_item.item_name
     self.item_quantity = line_item.item_quantity
     tax_rate =  line_item.tax_rate
-    self.tax_amount = line_item.item_price * item_quantity.to_f * tax_rate 
-    self.item_cost = (line_item.item_price * item_quantity.to_f) + tax_amount
+    self.tax_amount = BigDecimal((line_item.item_price * item_quantity.to_f * tax_rate).to_s)
+    self.item_cost = round_to_fives(BigDecimal((line_item.item_price * item_quantity.to_f + self.tax_amount).to_s))
   end
+
+  def round_to_fives(value)
+
+    int_version = (value * 100).to_i
+
+    last_digit = int_version % 10
+
+    if last_digit >= 3 and last_digit <= 7
+      # rount to 5
+      int_version = int_version - last_digit + 5
+    else
+      #round to nearest 10
+      int_version = int_version.round(-1)
+    end
+
+    return int_version.to_d / 100
+
+  end
+
 
 end
 

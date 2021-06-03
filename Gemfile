@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #gem 'memory_test_fix'
 
 gem 'rexml'
+gem 'actionview'
